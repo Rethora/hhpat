@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/edit.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" href="../assets/favicon.png" type="image/png">
+    <title>HHPAT - Edit</title>
+</head>
+
+<body>
+    <nav id="menu" class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <a class="navbar-brand" href="/">HHPAT</a>
+            <ul class="navbar-nav mr-auto"></ul>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <div class="container">
+        <form id="new-form">
+            <h3>Editing entry</h3>
+            <h4>Enter the new values for the existing entry.</h4>
+            <fieldset>
+                <input id="date-field" name="date" type="date" required>
+            </fieldset>
+            <fieldset>
+                <input name="weight" type="number" min="0" max="999" placeholder="Weight (lbs)">
+                <input name="fat" type="number" min="0" max="100" placeholder="Body Fat %">
+                <input name="muscle" type="number" min="0" max="100" placeholder="Lean Muscle">
+            </fieldset>
+            <fieldset>
+                <input name="bld_pres" type="number" min="0" max="999" placeholder="Blood Pressure">
+                <input name="bld_glu" type="number" min="0" max="100" placeholder="Blood Glucose">
+                <input name="rmr" type="number" min="0" max="100" placeholder="RMR">
+            </fieldset>
+            <fieldset>
+                <input name="chol" type="number" min="0" max="999" placeholder="Cholesterol">
+                <input name="ldl" type="number" min="0" max="100" placeholder="LDL">
+                <input name="hdl" type="number" min="0" max="100" placeholder="HDL">
+            </fieldset>
+            <fieldset>
+                <input name="trig" type="number" min="0" max="999" placeholder="Triglycerides">
+                <input name="vo2" type="number" min="0" max="100" placeholder="VO2 Max">
+            </fieldset>
+            <fieldset>
+                <input name="sleep" type="number" min="0" max="999" placeholder="Sleep Score">
+                <input name="stress" type="number" min="0" max="100" placeholder="Stress Score">
+            </fieldset>
+            <fieldset>
+                <textarea name="notes" placeholder="Notes"></textarea>
+            </fieldset>
+            <fieldset>
+                <button type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+            </fieldset>
+        </form>
+    </div>
+    <div id="loader"></div>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="modal-close" class="close">&times;</span>
+            <div id="modal-text"></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/edit.js"></script>
+</body>
+
+</html>

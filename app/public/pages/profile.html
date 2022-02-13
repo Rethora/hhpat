@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/app.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+    <link rel="icon" href="../assets/favicon.png" type="image/png">
+    <title>HHPAT - Profile</title>
+</head>
+
+<body>
+    <nav id="menu" class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <a class="navbar-brand" href="/">HHPAT</a>
+            <ul class="navbar-nav mr-auto"></ul>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    </nav>
+    <div class="container">
+        <div class="content">
+            <h2 id="name"></h2>
+
+            <div class="tab">
+                <button id="default" class="tablinks" onclick="openTab(event, 'overview')">Overview</button>
+                <button class="tablinks" onclick="openTab(event, 'weight')">Weight</button>
+                <button class="tablinks" onclick="openTab(event, 'bld_pres')">B Pres</button>
+                <button class="tablinks" onclick="openTab(event, 'rmr')">RMR</button>
+                <button class="tablinks" onclick="openTab(event, 'fat')">Fat</button>
+                <button class="tablinks" onclick="openTab(event, 'muscle')">Mus</button>
+                <button class="tablinks" onclick="openTab(event, 'chol')">Chol</button>
+                <button class="tablinks" onclick="openTab(event, 'ldl')">LDL</button>
+                <button class="tablinks" onclick="openTab(event, 'hdl')">HDL</button>
+                <button class="tablinks" onclick="openTab(event, 'trig')">Trig</button>
+                <button class="tablinks" onclick="openTab(event, 'bld_glu')">B Glu</button>
+                <button class="tablinks" onclick="openTab(event, 'vo2')">VO<sub>2</sub></button>
+                <button class="tablinks" onclick="openTab(event, 'sleep')">Sleep</button>
+                <button class="tablinks" onclick="openTab(event, 'stress')">Stress</button>
+            </div>
+
+            <div id="overview" class="tabcontent">
+                <h3>Overview</h3>
+                <button onclick="addEntry()" class="button">Add New Entry<i class="fa fa-plus" aria-hidden="true"></i></button>
+                <h4>All Entries:</h4>
+                <div id="entries"></div>
+                <button onclick="printAllPages()" class="button print">Print All Graphs<i class="fa fa-print"
+            aria-hidden="true"></i></button>
+                <button onclick="deleteUser()" class="button delete">Delete Profile<i class="fa fa-trash"
+            aria-hidden="true"></i></button>
+            </div>
+
+            <div id="weight" class="tabcontent">
+                <h3>Weight</h3>
+                <div id="weight-vis"></div>
+            </div>
+
+            <div id="bld_pres" class="tabcontent">
+                <h3>Blood Pressure</h3>
+                <div id="bld_pres-vis"></div>
+            </div>
+
+            <div id="rmr" class="tabcontent">
+                <h3>Resting Metabolic Rate</h3>
+                <div id="rmr-vis"></div>
+            </div>
+
+            <div id="fat" class="tabcontent">
+                <h3>Body Fat %</h3>
+                <div id="fat-vis"></div>
+            </div>
+
+            <div id="muscle" class="tabcontent">
+                <h3>Lean Muscle</h3>
+                <div id="muscle-vis"></div>
+            </div>
+
+            <div id="chol" class="tabcontent">
+                <h3>Cholesterol</h3>
+                <div id="chol-vis"></div>
+            </div>
+
+            <div id="ldl" class="tabcontent">
+                <h3>Low-Density Lipoprotein</h3>
+                <div id="ldl-vis"></div>
+            </div>
+
+            <div id="hdl" class="tabcontent">
+                <h3>High-Density Lipoprotein</h3>
+                <div id="hdl-vis"></div>
+            </div>
+
+            <div id="trig" class="tabcontent">
+                <h3>Triglycerides</h3>
+                <div id="trig-vis"></div>
+            </div>
+
+            <div id="bld_glu" class="tabcontent">
+                <h3>Blood Glucose</h3>
+                <div id="bld_glu-vis"></div>
+            </div>
+
+            <div id="vo2" class="tabcontent">
+                <h3>VO<sub>2</sub> Max</h3>
+                <div id="vo2-vis"></div>
+            </div>
+
+            <div id="sleep" class="tabcontent">
+                <h3>Sleep</h3>
+                <div id="sleep-vis"></div>
+            </div>
+
+            <div id="stress" class="tabcontent">
+                <h3>Stress</h3>
+                <div id="stress-vis"></div>
+            </div>
+        </div>
+    </div>
+    <div id="loader"></div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/profile.js"></script>
+</body>
+
+</html>

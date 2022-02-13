@@ -1,0 +1,29 @@
+{
+    "name": "hhpat-web-app",
+    "version": "1.0.0",
+    "description": "A web app for tracking human heath performance.",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon server.js"
+    },
+    "author": "Rethoracle",
+    "license": "ISC",
+    "engines": {
+        "node": "12.x"
+    },
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.0",
+        "express": "^4.17.1",
+        "helmet": "^5.0.2",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.9.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    }
+}

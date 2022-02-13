@@ -1,0 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+@media print {
+    .graph {
+        text-align: center;
+        break-inside: avoid;
+    }
+}

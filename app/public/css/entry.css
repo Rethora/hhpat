@@ -1,0 +1,72 @@
+#head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#name {
+    margin: 20px 0 20px 100px;
+}
+
+.container {
+    background: #F9F9F9;
+    padding: 25px;
+    margin: 150px 0;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    display: none;
+}
+
+.btn-group {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    align-items: right;
+    justify-content: right;
+}
+
+.button {
+    max-width: 200px;
+    margin: 20px 0 20px 10px;
+}
+
+.delete {
+    margin-right: 20px;
+}
+
+i {
+    margin-left: 8px;
+}
+
+.value {
+    margin: 5px 100px;
+}
+
+#profile-btn {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #b1b1b1;
+    max-width: 200px;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    min-width: 200px;
+    max-height: 51px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    margin: 10px 20px 0 0;
+}
+
+#profile-btn:hover {
+    background-color: #9b9b9b;
+}
+
+@media print {
+    #name,
+    button {
+        display: none;
+    }
+}
