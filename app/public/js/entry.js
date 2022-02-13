@@ -43,6 +43,8 @@ window.addEventListener("load", () => {
             const { entry } = data;
             if (entry) {
                 const { _id, date, profileName, profileId, ...rest } = entry;
+                const dateArr = date.split("T")[0];
+                const [year, month, day] = dateArr.split("-");
                 content.append(`
                     <div id="head">
                         <h2 id="name">${profileName}</h2>
@@ -50,7 +52,7 @@ window.addEventListener("load", () => {
                     </div>     
                 `);
                 content.append(`
-                    <div class="value">Date: ${new Date(date).toLocaleDateString("en-US")}</div>
+                    <div class="value">Date: ${month}/${day}/${year}</div>
                     <div class="value">Weight: ${rest.weight || "N/A"}</div>
                     <div class="value">Body Fat %: ${rest.fat || "N/A"}</div>
                     <div class="value">Lean Muscle: ${rest.muscle || "N/A"}</div>
