@@ -204,7 +204,10 @@ const drawAllGraphs = (data) => {
 
     // format date to be able to use
     data.map(d => {
-        const formattedTime = formatTime(new Date(d.date));
+        const dateArr = d.date.split("T")[0];
+        const [year, month, day] = dateArr.split("-");
+        const date = new Date(parseInt(year), parseInt(month - 1), parseInt(day));
+        const formattedTime = formatTime(date);
         d.date = formatDate(formattedTime);
         return d;
     });
@@ -231,8 +234,7 @@ const drawAllGraphs = (data) => {
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
                 .attr("transform", `translate(${margin.left},${margin.top})`);
-        }
-        else {
+        } else {
             svg = d3.select(`#${name}-vis`)
                 .append('div')
                 .html(`
