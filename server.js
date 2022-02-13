@@ -19,7 +19,7 @@ app.use(
                 "https://d3js.org/d3.v6.js",
                 "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             ],
-            "script-src-attr": ["'self'", 'unsafe-inline']
+            "script-src-attr": ["'self'", "'unsafe-inline'"]
         },
     })
 );
