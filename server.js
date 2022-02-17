@@ -1,10 +1,19 @@
 const express = require("express");
+const cors = require("cors");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 require("dotenv").config();
 
 const app = express();
+
+const corsOptions = {
+    origin: 'https://hhpat.herokuapp.com/',
+    credentials: true, //access-control-allow-credentials:true
+    optionSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 app.use(
     helmet.contentSecurityPolicy({
@@ -20,7 +29,7 @@ app.use(
                 "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             ],
             "script-src-attr": ["'self'", "'unsafe-inline'"]
-        },
+        }
     })
 );
 
