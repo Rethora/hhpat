@@ -33,6 +33,8 @@ app.use(
     })
 );
 
+app.disable("x-powered-by");
+
 // parse requests of content-type - application/json
 app.use(express.json());
 
