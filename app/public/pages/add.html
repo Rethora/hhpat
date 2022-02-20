@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/app.css">
     <link rel="stylesheet" href="../css/new.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../assets/favicon.png" type="image/png">
     <title>HHPAT - Add Entry</title>
 </head>
@@ -24,36 +25,71 @@
     </nav>
     <div class="container">
         <form id="new-form">
-            <h3>New Entry</h3>
+            <div class="form-head">
+                <h3>New Entry</h3>
+                <div class="tt"><i class="fa fa-info-circle" aria-hidden="true"></i>
+                    <span class="tooltiptext">Enter all the values without their unit of measurement. Blood pressure should be inputted with the format of "num1/num2".</span>
+                </div>
+            </div>
             <h4>Enter the values for the new entry of the existing profile</h4>
             <fieldset>
-                <input id="date-field" name="date" type="date" required>
+                <label>Date<br>
+                    <input id="date-field" name="date" type="date" required>
+                </label>
             </fieldset>
             <fieldset>
-                <input name="weight" type="number" min="0" placeholder="Weight">
-                <input name="fat" type="number" min="0" placeholder="Body Fat">
-                <input name="muscle" type="number" min="0" placeholder="Lean Muscle">
+                <label>Weight
+                    <input name="weight" type="number" min="0" placeholder="Weight">
+                </label>
+                <label>Body Fat
+                    <input name="fat" type="number" min="0" placeholder="Body Fat">
+                </label>
+                <label>Lean Muscle
+                    <input name="muscle" type="number" min="0" placeholder="Lean Muscle">
+                </label>
             </fieldset>
             <fieldset>
-                <input name="bld_pres" type="text" placeholder="Blood Pressure">
-                <input name="bld_glu" type="number" min="0" placeholder="Blood Glucose">
-                <input name="rmr" type="number" min="0" placeholder="RMR">
+                <label>Blood Pressure
+                    <input name="bld_pres" type="text" placeholder="Blood Pressure">
+                </label>
+                <label>Blood Glucose
+                    <input name="bld_glu" type="number" min="0" placeholder="Blood Glucose">
+                </label>
+                <label>Resting Metabolic Rate
+                    <input name="rmr" type="number" min="0" placeholder="RMR">
+                </label>
             </fieldset>
             <fieldset>
-                <input name="chol" type="number" min="0" placeholder="Cholesterol">
-                <input name="ldl" type="number" min="0" placeholder="LDL">
-                <input name="hdl" type="number" min="0" placeholder="HDL">
+                <label>Cholesterol
+                    <input name="chol" type="number" min="0" placeholder="Cholesterol">
+                </label>
+                <label>Low-Density Lipoprotein
+                    <input name="ldl" type="number" min="0" placeholder="LDL">
+                </label>
+                <label>High-Density Lipoprotein
+                    <input name="hdl" type="number" min="0" placeholder="HDL">
+                </label>
             </fieldset>
             <fieldset>
-                <input name="trig" type="number" min="0" placeholder="Triglycerides">
-                <input name="vo2" type="number" min="0" placeholder="VO2 Max">
+                <label>Triglycerides
+                    <input name="trig" type="number" min="0" placeholder="Triglycerides">
+                </label>
+                <label>VO<sub>2</sub> Max
+                    <input name="vo2" type="number" min="0" placeholder="VO2 Max">
+                </label>
             </fieldset>
             <fieldset>
-                <input name="sleep" type="number" min="0" placeholder="Sleep Score">
-                <input name="stress" type="number" min="0" placeholder="Stress Score">
+                <label>Sleep Score
+                    <input name="sleep" type="number" min="0" placeholder="Sleep Score">
+                </label>
+                <label>Stress Score
+                    <input name="stress" type="number" min="0" placeholder="Stress Score">
+                </label>
             </fieldset>
             <fieldset>
-                <textarea name="notes" placeholder="Notes"></textarea>
+                <label>Notes
+                    <textarea name="notes" placeholder="Notes"></textarea>
+                </label>
             </fieldset>
             <fieldset>
                 <button type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
