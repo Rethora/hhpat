@@ -7,23 +7,23 @@ window.addEventListener("load", () => {
     let [month, day, year] = new Date().toLocaleDateString("en-US").split("/");
     if (month.length < 2) month = "0" + month;
     if (day.length < 2) day = "0" + day;
-    
+
     $("#date-field").val(year + "-" + month + "-" + day);
 
     fetch(`/api/auth/get/profile?id=${id}`)
-    .then(res => {
-        if (res.status !== 200) {
-            // display error
-            const content = $("#new-form");
-            content.empty();
-            content.append("<p class='center'>ERROR: no profile found!</p>")
-        }
-        return res.json();
-    })
-    .then(data => {
-        const {client} = data;
-        $("h3").append(`<span> for ${client.f_name} ${client.m_name} ${client.l_name}</span>`);
-    });
+        .then(res => {
+            if (res.status !== 200) {
+                // display error
+                const content = $("#new-form");
+                content.empty();
+                content.append("<p class='center'>ERROR: no profile found!</p>")
+            }
+            return res.json();
+        })
+        .then(data => {
+            const { client } = data;
+            $("h3").append(`<span> for ${client.f_name} ${client.m_name} ${client.l_name}</span>`);
+        });
 });
 
 
@@ -44,7 +44,7 @@ $("#new-form").on("submit", (event) => {
             modalText.append(`
             <div class="center">
                     <p>Successfully added a new entry.</p>
-                    <a href="/view?clientId=${id}&entryId=${res.entryId}">View entry</a>
+                    <a href="/view?clientId=${id}&entryIds=[${res.entryId}]">View entry</a>
                     <br>
                     <a href="/profile?id=${id}">Go to profile</a>
                 </div>
