@@ -7,7 +7,7 @@ let selectedEntries = [];
 
 const graphsToMake = [
     "weight",
-    "bld_pres",
+    // "bld_pres",
     "rmr",
     "fat",
     "muscle",
