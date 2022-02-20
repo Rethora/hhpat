@@ -3,6 +3,7 @@ const parameters = new URLSearchParams(queryString);
 const profileId = parameters.get('id');
 const content = $(".content");
 let userName;
+let selectedEntries = [];
 
 const graphsToMake = [
     "weight",
@@ -24,6 +25,7 @@ let margin = { top: 10, right: 30, bottom: 30, left: 60 },
     width = 850 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
+// listeners
 const printAllPages = () => {
     let tabs = document.getElementsByClassName("tabcontent");
     let printWindow = window.open('', 'PRINT');
@@ -65,27 +67,63 @@ const deleteUser = () => {
         .catch(err => console.error(err));
 };
 
-const openView = (clientId, entryId) => {
-    window.location = `/view?clientId=${clientId}&entryId=${entryId}`;
-};
+const openView = () => {
+    let sIds = '';
+    selectedEntries.forEach((id, i) => {
+        sIds += id
+        if (i !== selectedEntries.length - 1) sIds += ","
+    })
+    window.location = `/view?clientId=${profileId}&entryIds=[${sIds}]`;
+}
 
 const openViewNewTab = (entryId) => {
-    window.open(`/view?clientId=${profileId}&entryId=${entryId}`, "_blank");
+    window.open(`/view?clientId=${profileId}&entryIds=[${entryId}]`, "_blank");
 };
 
+$("#open-entries").on("submit", (e) => {
+    e.preventDefault();
+    openView()
+})
+
+// draw components
 const makeOverview = (values, userId) => {
     if (!values.length) return $("#entries").append("<p class='center'>No entries yet...</p>")
     values.forEach(value => {
         const dateArr = value.date.split("T");
         const [year, month, day] = dateArr[0].split("-");
         $("#entries").append(`
-            <div class="entry">
-                <div onclick="openView('${userId}', '${value._id}')" class="hover">${month}/${day}/${year}</div>
-            </div>
+            <input class="entry" value="false" type="checkbox" data-id=${value._id}>
+            <label>${month}/${day}/${year}</label>
+            <br>
         `);
+
+    })
+
+    // controlling selection of entries and displaying open button if at least one selected
+    $(".entry").on("click", (e) => {
+        if (e.target.value === "false") {
+            e.target.value = "true"
+        } else {
+            e.target.value = "false"
+        }
+        const entryId = e.target.getAttribute("data-id")
+        const selectedIdx = selectedEntries.findIndex(elem => elem === entryId)
+        if (selectedIdx !== -1) {
+            if (e.target.value === "false") selectedEntries.splice(selectedIdx, 1)
+        } else {
+            if (e.target.value === "true") selectedEntries.push(entryId)
+        }
+
+        if (!selectedEntries.length) {
+            $("#open-entries-submit").hide()
+        } else {
+            $("#open-entries-submit").show()
+        }
+
     })
 };
 
+// on page load
 window.addEventListener("load", () => {
     fetch(`/api/auth/get/profile?id=${profileId}`)
         .then(res => res.json())

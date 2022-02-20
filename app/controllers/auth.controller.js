@@ -231,20 +231,26 @@ exports.addEntry = (req, res) => {
 
 exports.getEntry = (req, res) => {
     const userId = req.userId;
-    const { clientId, entryId } = req.query;
+    const { clientId, entryIds } = req.query;
     if (!clientId) return res.status(400).json({ error: "No client id." });
-    if (!entryId) return res.status(400).json({ error: "No entry id." });
+    if (!entryIds) return res.status(400).json({ error: "No entry ids." });
+    const idsString = entryIds.replace("[", "").replace("]", "")
+    const idsArray = idsString.split(",")
     User.findById(userId, (err, user) => {
         if (err) console.error(err);
         if (user) {
             const client = user.data.find(c => c._id.toString() === clientId);
             if (client) {
-                const entry = client.values.find(v => v._id.toString() === entryId);
-                if (entry) {
-                    entry.profileId = client._id;
-                    entry.profileName = `${client.f_name} ${client.m_name} ${client.l_name}`;
-                    return res.status(200).json({ entry: entry });
-                }
+                let entries = [];
+                idsArray.forEach(id => {
+                    const entry = client.values.find(v => v._id.toString() === id);
+                    if (entry) {
+                        entries.push(entry)
+                    } else {
+                        return res.status(404).json({ error: "Entry not found." })
+                    }
+                })
+                return res.status(200).json({ profileId: client._id, profileName: `${client.f_name} ${client.m_name} ${client.l_name}`, entries: entries })
             }
             return res.status(400).json({ error: "No entry found." })
         }

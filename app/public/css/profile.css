@@ -2,6 +2,10 @@
     font-family: "Roboto", sans-serif;
 }
 
+body {
+    width: 100vw!important;
+}
+
 .container {
     max-width: 400px;
     width: 100%;
@@ -92,13 +96,6 @@
     opacity: .7;
 }
 
-.entry {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-}
-
 i {
     margin-left: 15px;
 }
@@ -143,6 +140,22 @@ i {
 
 .print:hover {
     background-color: #9e9e9e;
+}
+
+#open-entries-submit {
+    display: none;
+}
+
+@media only screen and (max-width: 1250px) {
+    * {
+        font-size: small;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    * {
+        font-size: smaller;
+    }
 }
 
 @media print {

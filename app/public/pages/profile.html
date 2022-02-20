@@ -48,7 +48,10 @@
                 <h3>Overview</h3>
                 <button onclick="addEntry()" class="button">Add New Entry<i class="fa fa-plus" aria-hidden="true"></i></button>
                 <h4>All Entries:</h4>
-                <div id="entries"></div>
+                <form id="open-entries">
+                    <div id="entries"></div>
+                    <button id="open-entries-submit">Open Entries</button>
+                </form>
                 <button onclick="printAllPages()" class="button print">Print All Graphs<i class="fa fa-print"
             aria-hidden="true"></i></button>
                 <button onclick="deleteUser()" class="button delete">Delete Profile<i class="fa fa-trash"
