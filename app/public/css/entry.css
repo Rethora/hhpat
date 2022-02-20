@@ -5,15 +5,20 @@
 }
 
 #name {
-    margin: 20px 0 20px 100px;
+    margin: 20px 0 20px 10px;
 }
 
 .container {
     background: #F9F9F9;
-    padding: 25px;
+    padding: 50px 0;
     margin: 150px 0;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     display: none;
+}
+
+#container-content {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .btn-group {
@@ -33,8 +38,17 @@
     margin-right: 20px;
 }
 
-i {
-    margin-left: 8px;
+.icon {
+    margin: 10px;
+}
+
+.icon:hover {
+    cursor: pointer;
+}
+
+.fa-user,
+.fa-print {
+    margin-left: 5px;
 }
 
 .value {
@@ -64,9 +78,101 @@ i {
     background-color: #9b9b9b;
 }
 
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 300px;
+    height: 750px;
+    margin: 20px auto;
+    border: 2px solid black;
+}
+
+td,
+th {
+    border: 1px solid #c4c4c4;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+/* different color backgrounds for the cells of date on each table */
+
+.red {
+    background-color: rgb(247, 104, 104);
+}
+
+.green {
+    background-color: rgb(115, 240, 115);
+}
+
+.blue {
+    background-color: rgb(118, 118, 255);
+}
+
+.yellow {
+    background-color: rgb(255, 255, 152);
+}
+
+.purple {
+    background-color: rgb(255, 145, 255);
+}
+
+.teal {
+    background-color: rgb(113, 255, 255);
+}
+
+.pink {
+    background-color: pink;
+}
+
+.orange {
+    background-color: rgb(255, 203, 107);
+}
+
+.print-container {
+    text-align: right;
+    margin-right: 20px;
+}
+
+#logo-container {
+    text-align: center;
+    margin-bottom: 100px;
+    display: none;
+}
+
 @media print {
-    #name,
-    button {
+    body,
+    .container {
+        background-color: none;
+        background: none;
+        margin: 0;
+    }
+    #container-content {
+        display: table;
+        margin: auto;
+    }
+    table {
+        break-inside: avoid-page;
+        display: inline-block;
+        margin: 10px;
+        border: none;
+    }
+    #logo-container {
+        display: block;
+    }
+    #head {
+        display: block;
+        text-align: center;
+    }
+    #name {
+        margin: 20px 10px;
+    }
+    button,
+    .edit {
         display: none;
     }
 }

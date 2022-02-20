@@ -15,7 +15,7 @@ $("#new-form").on("submit", e => {
             modal.text.append(`
                 <div class="center">
                 <p>Successfully updated entry.</p>
-                <a href="/view?clientId=${profileId}&entryId=${entryId}">View entry</a>
+                <a href="/view?clientId=${profileId}&entryIds=[${entryId}]">View entry</a>
                 <br>
                 <a href="/profile?id=${profileId}">Go to profile</a>
                 </div>
@@ -37,7 +37,7 @@ window.addEventListener("load", () => {
     modal.container = $("#modal");
     modal.text = $("#modal-text");
 
-    fetch(`/api/auth/get/entry?clientId=${profileId}&entryId=${entryId}`)
+    fetch(`/api/auth/get/entry?clientId=${profileId}&entryIds=[${entryId}]`)
         .then(res => {
             if (res.status !== 200) {
                 $("body").append("<p class='center'>Entry not found...</p>")
@@ -45,8 +45,9 @@ window.addEventListener("load", () => {
             return res.json();
         })
         .then(data => {
-            const { entry } = data;
-            if (entry) {
+            const { entries } = data;
+            if (entries.length) {
+                const entry = entries[0]
                 Object.keys(entry).forEach(key => {
                     if (key !== "date") {
                         const input_element = $(`#new-form input[name=${key}]`);

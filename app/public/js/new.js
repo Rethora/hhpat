@@ -19,7 +19,7 @@ const createNew = () => {
             modalText.append(`
             <div class="center">
                 <p>Successfully created a new profile.</p>
-                <a href="/view?clientId=${profileId}&entryId=${entryId}">View entry</a>
+                <a href="/view?clientId=${profileId}&entryIds=[${entryId}]">View entry</a>
                 <br>
                 <a href="/profile?id=${profileId}">Go to profile</a>
             </div>
