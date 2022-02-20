@@ -61,7 +61,11 @@
             </fieldset>
             <fieldset>
                 <label>Blood Pressure
-                    <input name="bld_pres" type="text" placeholder="Blood Pressure">
+                    <div class="bld-pres-inp">
+                        <input name="sys" type="number" placeholder="Systolic">
+                        <span class="slash">/</span>
+                        <input name="dia" type="number" placeholder="Diastolic">
+                    </div>
                 </label>
                 <label>Blood Glucose
                     <input name="bld_glu" type="number" min="0" placeholder="Blood Glucose">
