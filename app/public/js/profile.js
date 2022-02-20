@@ -26,6 +26,15 @@ let margin = { top: 10, right: 30, bottom: 30, left: 60 },
     height = 500 - margin.top - margin.bottom;
 
 // listeners
+const showButtons = () => {
+    const dropdown = $("#overview-dropdown")
+    if (dropdown.css("display") === "none") {
+        dropdown.css("display", "block")
+    } else {
+        dropdown.css("display", "none")
+    }
+}
+
 const printAllPages = () => {
     let tabs = document.getElementsByClassName("tabcontent");
     let printWindow = window.open('', 'PRINT');
