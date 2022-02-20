@@ -48,20 +48,24 @@ window.addEventListener("load", () => {
             const { entries } = data;
             if (entries.length) {
                 const entry = entries[0]
-                Object.keys(entry).forEach(key => {
-                    if (key !== "date") {
-                        const input_element = $(`#new-form input[name=${key}]`);
-                        if (input_element) {
-                            if (entry[key]) {
-                                input_element.val(entry[key]);
-                            }
-                        };
-                    }
+                const { _id, bld_pres, date, notes, ...rest } = entry
+                Object.keys(rest).forEach(key => {
+                    const input_element = $(`#new-form input[name=${key}]`);
+                    if (input_element) {
+                        if (entry[key]) {
+                            input_element.val(entry[key]);
+                        }
+                    };
                 })
-                if (entry.notes) {
-                    $("#new-form textarea[name=notes]").val(entry.notes);
+                if (bld_pres && bld_pres.length) {
+                    const [sys, dia] = bld_pres.split("/")
+                    $("#new-form input[name=sys]").val(sys);
+                    $("#new-form input[name=dia]").val(dia);
                 }
-                const dateArr = entry.date.split("T")[0];
+                if (notes.length) {
+                    $("#new-form textarea[name=notes]").val(notes);
+                }
+                const dateArr = date.split("T")[0];
                 const [year, month, day] = dateArr.split("-");
                 $("#date-field").val(`${year}-${month}-${day}`);
                 content.show();

@@ -77,6 +77,10 @@ exports.newEntryCreate = (req, res) => {
     User.findById(userId, (err, user) => {
         if (err) console.error(err);
         if (user) {
+            const { sys, dia } = rest
+            if (sys && dia) {
+                rest.bld_pres = `${sys}/${dia}`
+            }
             const data = new Data(rest);
             const client = new Client({
                 f_name: f_name,
@@ -174,7 +178,11 @@ exports.editEntry = (req, res) => {
                 if (entryIdx !== -1) {
                     const entry = client.values[entryIdx];
                     const { _id } = entry;
-                    const data = new Data(req.body);
+                    const { sys, dia, ...rest } = req.body
+                    if (sys && dia) {
+                        rest.bld_pres = `${sys}/${dia}`
+                    }
+                    const data = new Data(rest);
                     data._id = _id;
                     client.values.splice(entryIdx, 1, data);
                     user.data.splice(clientIdx, 1, client);
