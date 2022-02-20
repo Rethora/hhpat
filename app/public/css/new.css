@@ -5,6 +5,11 @@
     position: relative;
 }
 
+label {
+    width: 100%;
+    margin: 10px;
+}
+
 #new-form input,
 #new-form button,
 #new-form input[type="date"],
@@ -51,7 +56,7 @@
     background: #FFF;
     /* margin: 0 0 5px; */
     padding: 10px;
-    margin: 5px!important;
+    /* margin: 5px!important; */
     width: 100%;
 }
 
