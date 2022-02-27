@@ -7,7 +7,7 @@ let selectedEntries = [];
 
 const graphsToMake = [
     "weight",
-    // "bld_pres",
+    "bld_pres",
     "rmr",
     "fat",
     "muscle",
@@ -181,9 +181,16 @@ const openTab = (evt, tabName) => {
 document.getElementById("default").click();
 
 // graphs
-const drawYAxis = (data, graph) => {
+const drawYAxis = (graph) => {
+    // console.log(data)
     const yAxis = d3.scaleLinear()
-        .domain([d3.min(data, (d) => d[graph.name] - 20), d3.max(data, (d) => d[graph.name] + 20)])
+        .domain(
+            graph.name === "bld_pres" ? [
+                d3.min(graph.data, d => d.diastolic - 20), d3.max(graph.data, d => d.systolic + 20)
+            ] : [
+                d3.min(graph.data, (d) => d[graph.name] - 20), d3.max(graph.data, (d) => d[graph.name] + 20)
+            ]
+        )
         .range([height, 0]);
     graph.graph.append("g")
         .call(d3.axisLeft(yAxis).tickSizeOuter(0));
@@ -198,50 +205,50 @@ const drawToolTip = (graph) => {
     return tooltip;
 };
 
-const drawPoints = (graph) => {
-    const tooltip = graph.toolTip;
+const drawPoints = (graph, name, pointColor) => {
+    const tooltip = graph.toolTip
     graph.graph.selectAll("points")
         .data(graph.data)
         .enter()
         .append("circle")
         .attr("class", "hover")
-        .attr("fill", "black")
+        .attr("fill", pointColor)
         .attr("stroke", "none")
-        .attr("cx", (d) => graph.xAxis(d.date))
-        .attr("cy", (d) => graph.yAxis(d[graph.name]))
-        .attr("onclick", (d) => `openViewNewTab('${d._id}')`)
+        .attr("cx", d => graph.xAxis(d.date))
+        .attr("cy", d => graph.yAxis(d[name]))
+        .attr("onclick", d => `openViewNewTab('${d._id}')`)
         .attr("r", 5)
-        .on("mouseover", (event, d) => {
+        .on("mouseover", (e, d) => {
             tooltip
                 .transition()
                 .duration(200)
-                .style("opacity", .9);
+                .style("opacity", .9)
             tooltip
                 .html(
                     `
                         <div>Date: <strong>${d.date.toLocaleDateString("en-US")}</strong></div>
-                        <div>Value: <strong>${d[graph.name]}</strong></div>
+                        <div>Value: <strong>${d[name]}</strong></div>
                     `
                 )
-                .style("left", (event.pageX - 320) + "px")
-                .style("top", (event.pageY - 140) + "px");
+                .style("left", (e.pageX - 320) + "px")
+                .style("top", (e.pageY - 140) + "px");
         })
-        .on("mouseout", (d) => {
+        .on("mouseout", () => {
             tooltip.transition()
                 .duration(500)
                 .style("opacity", 0);
-        });
+        })
 }
 
-const drawLine = (graph) => {
+const drawLine = (graph, name, lineColor) => {
     graph.graph.append("path")
         .datum(graph.data)
         .attr("fill", "none")
-        .attr("stroke", "#76b852")
+        .attr("stroke", lineColor)
         .attr("stroke-width", 1.5)
         .attr("d", d3.line()
-            .x((d) => graph.xAxis(d.date))
-            .y((d) => graph.yAxis(d[graph.name])))
+            .x(d => graph.xAxis(d.date))
+            .y(d => graph.yAxis(d[name])))
 };
 
 const drawAllGraphs = (data) => {
@@ -256,6 +263,12 @@ const drawAllGraphs = (data) => {
         const date = new Date(parseInt(year), parseInt(month - 1), parseInt(day));
         const formattedTime = formatTime(date);
         d.date = formatDate(formattedTime);
+
+        if (d.bld_pres) {
+            const [systolic, diastolic] = d.bld_pres.split("/")
+            d.systolic = parseInt(systolic)
+            d.diastolic = parseInt(diastolic)
+        }
         return d;
     });
 
@@ -299,8 +312,18 @@ const drawAllGraphs = (data) => {
         graph.graph.append("g").attr("transform", `translate(0, ${height})`).call(d3.axisBottom(xAxis).tickSizeOuter(0).tickFormat(d3.timeFormat("%m/%d/%y")));
         graph.toolTip = drawToolTip(graph);
         graph.xAxis = xAxis;
-        graph.yAxis = drawYAxis(graph.data, graph);
-        drawLine(graph);
-        drawPoints(graph);
+        console.log(graph)
+
+        graph.yAxis = drawYAxis(graph)
+
+        if (graph.name === "bld_pres") {
+            drawLine(graph, "diastolic", "#e29640")
+            drawLine(graph, "systolic", "#76b852")
+            drawPoints(graph, "diastolic", "#e29640")
+            drawPoints(graph, "systolic", "#76b852")
+        } else {
+            drawLine(graph, graph.name, "#76b852")
+            drawPoints(graph, graph.name, "#76b852")
+        }
     });
 };
