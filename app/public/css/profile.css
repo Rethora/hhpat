@@ -142,6 +142,30 @@ i {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
+.key {
+    display: flex;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+.dot {
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: auto 4px;
+}
+
+.sys {
+    background-color: #76b852;
+    background: #76b852;
+}
+
+.dia {
+    background-color: #e29640;
+    background: #e29640;
+}
+
 .no-data {
     height: 500px;
 }
